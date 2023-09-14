@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 public class RotationGyro : MonoBehaviour
 {
-
+    public HandlerLayers hl;
+    public string axis;
     private Gyroscope gyroscope;
+    private float angle = 100, time = 2, wTime;
+    private Quaternion r;
+    public int layer = 1;
 
     void Start()
     {
@@ -12,6 +16,7 @@ public class RotationGyro : MonoBehaviour
         {
             gyroscope = Input.gyro;
             gyroscope.enabled = true;
+            r = Quaternion.Euler(0, 0, 0);
         }
         else
         {
@@ -21,11 +26,39 @@ public class RotationGyro : MonoBehaviour
 
     void Update()
     {
-        if (gyroscope != null)
+        if (gyroscope != null && hl.actualLayer == layer)
         {
             Quaternion gyroRotation = gyroscope.attitude;
 
-            transform.rotation = Quaternion.Euler(90, 0, 0) * (new Quaternion(-gyroRotation.x*100, -gyroRotation.y*100, gyroRotation.z * 100, gyroRotation.w * 100));
+            switch (axis)
+            {
+                case "x":
+                    angle = gyroRotation.eulerAngles.x*5;
+                    transform.rotation = Quaternion.Euler(0,angle, 0);
+                    break;
+                case "y":
+                    angle = gyroRotation.eulerAngles.y*5;
+                    transform.rotation = Quaternion.Euler(angle, 0, 0);
+                    break;
+
+                case "z":
+                    angle = gyroRotation.eulerAngles.z*5;
+                    transform.rotation = Quaternion.Euler(0, 0,angle);
+                    break;
+            }
+        }
+        if (Quaternion.Angle(transform.rotation, r) <= 0.5)
+        {
+            wTime += Time.deltaTime;
+
+            if (wTime >= time)
+            {
+                hl.complete = true;
+            }
+        }
+        else
+        {
+            wTime = 0;
         }
     }
 }

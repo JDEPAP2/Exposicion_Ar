@@ -1,12 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
-
 public class Rotate : MonoBehaviour
 {
-    // Update is called once per frame
+    float angle = 180, vel = 5;
+    public CambioCara cc;
+    public GameObject trueLight;
+    public Text txt;
+
+    void Start()
+    {
+        StartCoroutine(HandleVel());
+    }
+
     void Update()
     {
-        transform.RotateAround(transform.parent.position, transform.parent.up, 90f * Time.deltaTime);
+        if (angle > 355 || angle < 5)
+        {
+            cc.cambioTextura();
+            angle = 0;
+        }
+        float tAngle = 90f * Time.deltaTime * vel;
+        transform.RotateAround(transform.parent.position, transform.parent.up, tAngle);
+        angle += tAngle;
+    }
+
+
+
+    private IEnumerator HandleVel()
+    {
+        float time = 10;
+        for (int i= 0; i < time; i++)
+        {
+            txt.text = txt.text == "Buscando..." ? "Buscando.." : "Buscando...";
+            yield return new WaitForSeconds(1.0f);
+            vel-= 0.5f;
+        }
+
+        yield return new WaitForSeconds(1.0f);
+        gameObject.SetActive(false);
+        trueLight.SetActive(true);
+        
     }
 }

@@ -19,16 +19,11 @@ public class CambioCara : MonoBehaviour
 
     public void cambioTextura()
     {
+        indexMascara = new System.Random().Next(0, mascaras.Count);
+
         foreach (ARFace cara in managerCara.trackables)
         {
             cara.GetComponent<MeshRenderer>().material = mascaras[indexMascara];
-        }
-
-        indexMascara++;
-
-        if (indexMascara == mascaras.Count)
-        {
-            indexMascara = 0;
         }
         fn.accion = true;
     }
