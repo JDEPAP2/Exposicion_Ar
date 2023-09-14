@@ -7,6 +7,6 @@ public class AjustarRot : MonoBehaviour
     public GameObject cam;
     public void Ajustar()
     {
-        transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y - 160, 0);
+        transform.rotation = Quaternion.Euler(0, cam.transform.rotation.eulerAngles.y - 150, 0);
     }
 }
