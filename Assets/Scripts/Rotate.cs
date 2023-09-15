@@ -8,6 +8,7 @@ public class Rotate : MonoBehaviour
     public CambioCara cc;
     public GameObject trueLight;
     public Text txt;
+    public List<GameObject> panels;
 
     void Start()
     {
@@ -39,8 +40,12 @@ public class Rotate : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1.0f);
-        gameObject.SetActive(false);
-        trueLight.SetActive(true);
         
+        trueLight.SetActive(true);
+        panels[0].SetActive(false);
+           
+        yield return new WaitForSeconds(2.0f);
+        panels[cc.indexMascara + 1].SetActive(true);
+        gameObject.SetActive(false);
     }
 }

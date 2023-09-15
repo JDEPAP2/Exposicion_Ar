@@ -9,7 +9,7 @@ public class CambioCara : MonoBehaviour
     [SerializeField] private ARFaceManager managerCara;
     public List<Material> mascaras = new List<Material>();
     public FuncionesFiltro fn;
-    private int indexMascara = 0;
+    public int indexMascara = 0;
 
     // Start is called before the first frame update
     void Start()
