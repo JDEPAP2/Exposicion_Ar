@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 public class Rotate : MonoBehaviour
 {
     float angle = 180, vel = 5;
     public CambioCara cc;
     public GameObject trueLight;
-    public Text txt;
+    public TextMeshProUGUI txt;
     public List<GameObject> panels;
 
     void Start()

@@ -27,7 +27,6 @@ public class ObjectManipulator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -39,7 +38,7 @@ public class ObjectManipulator : MonoBehaviour
 
             if (Input.touchCount == 1)
             {
-                if(touchOne.phase == TouchPhase.Began)
+                if (touchOne.phase == TouchPhase.Began)
                 {
                     initialTouchPos = touchOne.position;
                     isArObjectSelected = CheckTouch(initialTouchPos);
@@ -48,7 +47,7 @@ public class ObjectManipulator : MonoBehaviour
                 if (touchOne.phase == TouchPhase.Moved && isArObjectSelected)
                 {
                     Vector2 diffPos = (touchOne.position - initialTouchPos) * screenFactor;
-                    ARObject.transform.position = ARObject.transform.position + 
+                    ARObject.transform.position = ARObject.transform.position +
                         new Vector3(diffPos.x * speedMove, diffPos.y * speedMove, 0);
 
                     initialTouchPos = touchOne.position;
@@ -65,7 +64,7 @@ public class ObjectManipulator : MonoBehaviour
                     touchDistance = Vector2.Distance(touchTwo.position, touchOne.position);
                 }
 
-                if(touchOne.phase == TouchPhase.Moved || touchTwo.phase == TouchPhase.Moved)
+                if (touchOne.phase == TouchPhase.Moved || touchTwo.phase == TouchPhase.Moved)
                 {
                     Vector2 currentTouchPosDiff = touchTwo.position - touchOne.position;
                     float currentTouchDis = Vector2.Distance(touchTwo.position, touchOne.position);

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using UnityEngine.XR.ARFoundation;
 
 public class FuncionesFiltro : MonoBehaviour
@@ -9,7 +9,7 @@ public class FuncionesFiltro : MonoBehaviour
     public bool accion = false;
     public ARFaceManager managerCara;
     public GameObject g;
-    public Text txt;
+    public TextMeshProUGUI txt;
     public float angle;
 
     void Update()

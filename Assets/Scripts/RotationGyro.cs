@@ -7,7 +7,7 @@ public class RotationGyro : MonoBehaviour
     public HandlerLayers hl;
     public string axis;
     private Gyroscope gyroscope;
-    private float angle = 100, time = 2, wTime;
+    private float angle = 100, time = 1.5f, wTime;
     private bool first = true;
     public int layer = 1;
     private Collider c;
